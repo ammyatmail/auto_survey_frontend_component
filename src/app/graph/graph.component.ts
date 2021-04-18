@@ -146,7 +146,7 @@ export class GraphComponent implements OnInit {
 
   }
 categorySurveyGraph(): void {
-this.canvas = document.getElementById('myChart');
+this.canvas = document.getElementById('chart_category');
 this.ctx = this.canvas.getContext('2d');
   let myChart = new Chart(this.ctx, {
     type: 'doughnut',
@@ -179,7 +179,7 @@ this.ctx = this.canvas.getContext('2d');
         legend: {
           labels: {
             font: {
-                size: 18
+                size: 14
             }
         },
           position: 'right',
@@ -197,7 +197,7 @@ this.ctx = this.canvas.getContext('2d');
 }
 
 targetSummaryGraph(): void {
-  this.canvas = document.getElementById('myChart1');
+  this.canvas = document.getElementById('chart_target');
   this.ctx = this.canvas.getContext('2d');
     let myChart = new Chart(this.ctx, {
       type: 'pie',
@@ -247,7 +247,7 @@ targetSummaryGraph(): void {
   }
 
   carMakeDistributionGraph(plabel:String[], pdata: String[]): void {
-    this.canvas = document.getElementById('myChart3');
+    this.canvas = document.getElementById('chart_carmake');
     this.ctx = this.canvas.getContext('2d');
       let myChart = new Chart(this.ctx, {
         type: 'pie',
@@ -299,7 +299,7 @@ targetSummaryGraph(): void {
     }
 
   carModelGraph(plabel:String[], pdata: String[]): void {
-    this.canvas = document.getElementById('myChart2');
+    this.canvas = document.getElementById('chart_car');
     this.ctx = this.canvas.getContext('2d');
     if (typeof this.carChart != 'undefined') {
       this.carChart.destroy();
