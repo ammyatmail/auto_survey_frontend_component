@@ -1,4 +1,3 @@
-![form](https://user-images.githubusercontent.com/45271979/115144214-176d9580-a069-11eb-9546-f7f741d31989.JPG)
 # Surveys
 
 Car sales have been decreasing drastically over the past few years. The management team has thought long and hard on what to do about this and have now decided the best course of
@@ -53,3 +52,8 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Screenshots
+
+![form](https://user-images.githubusercontent.com/45271979/115144214-176d9580-a069-11eb-9546-f7f741d31989.JPG)
+
