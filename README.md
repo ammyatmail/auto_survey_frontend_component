@@ -1,5 +1,33 @@
 # Surveys
 
+Car sales have been decreasing drastically over the past few years. The management team has thought long and hard on what to do about this and have now decided the best course of
+action would be to gather some information from our customers.
+
+This is front end component of Automotive Sales Customer Survey. Based on survey data being submitted by customers, a summary report is prepared.
+
+## Installation
+
+Use the npm to install the dependencies. 
+
+```bash
+npm install //to install all required dependencies
+Install MongoDB Community Edition (instructions) and run it by executing mongod
+npm run dev to start the local server
+```
+
+## URLs
+
+```python
+The survey form can be accessed by default from - http://localhost:4200/
+Summary report can be accessed by default from - http://localhost:4200/summary
+
+These URLs are configurable.
+
+```
+## Screenshots
+
+```
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.9.
 
 ## Development server
