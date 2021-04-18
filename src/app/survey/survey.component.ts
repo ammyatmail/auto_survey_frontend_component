@@ -43,8 +43,11 @@ export class SurveyComponent implements OnInit {
     // console.log("userModel: "+this.userModel);
     this.surveyService.createSurvey(this.userModel)
     .subscribe((createdSurvey:User) => {
-      if(createdSurvey.age)
-      this.infoMsg = 'Survey submitted Successfully!';
+      if(createdSurvey.firstcar=="yes") {
+        this.infoMsg = 'Survey submitted Successfully. We are targeting more experienced clients, thank you for your interest.';
+      } else {
+      this.infoMsg = 'Survey submitted Successfully, Thank You!!';
+      }
       this.errorMsg = '';
     },
     (error: ErrorEvent) => {
