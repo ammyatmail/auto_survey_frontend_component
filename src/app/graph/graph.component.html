@@ -1,0 +1,30 @@
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <mat-toolbar *ngIf="errorMsg" color="warn">{{ errorMsg }}</mat-toolbar>
+  <mat-toolbar *ngIf="infoMsg" color="accent">{{ infoMsg }}</mat-toolbar>
+
+    <div>
+
+      <div style="float: left;width: 550px;border: 1px solid #000;margin: 2px; padding: 5px;">
+        <canvas id="myChart" width="450" height="400"></canvas>
+       </div>
+        <div style="float: left;width: 550px;border: 1px solid #000;border: 1px solid #000;margin: 2px; padding: 5px;">
+         <canvas id="myChart1" width="450" height="200"></canvas>
+        </div>
+      </div>
+      <div>
+
+        <div style="float: left;width: 550px;border: 1px solid #000;border: 1px solid #000;margin: 2px; padding: 5px;">
+          <mat-form-field appearance="fill">
+            <mat-label>Cars</mat-label>
+            <select matNativeControl required (change)="updateCarChart($event)">
+              <option *ngFor="let carMakeForm of carmodelForms"> {{carMakeForm}}</option>
+            </select>
+          </mat-form-field>
+         <canvas id="myChart2" width="250" height="80"></canvas>
+        </div>
+        <div style="float: left;width: 550px;border: 1px solid #000;border: 1px solid #000;margin: 2px; padding: 5px;">
+         <canvas id="myChart3" width="450" height="200"></canvas>
+        </div>
+     </div>
+     <mat-toolbar color="accent"></mat-toolbar>
+
