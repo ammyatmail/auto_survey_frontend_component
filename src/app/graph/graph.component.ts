@@ -126,7 +126,7 @@ export class GraphComponent implements OnInit {
       this.loading = false;
     });
 
-    this.surveyService.getSurveyCarmodel("bmw").subscribe((mData:String[][]) => {
+    this.surveyService.getSurveyCarmodel(this.carmodelForms[0]).subscribe((mData:String[][]) => {
       this.carModelGraph(mData[0], mData[1]);
       this.loading = false;
     },
