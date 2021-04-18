@@ -24,9 +24,8 @@ Summary report can be accessed by default from - http://localhost:4200/summary
 These URLs are configurable.
 
 ```
-## Screenshots
 
-```
+## Details
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.9.
 
