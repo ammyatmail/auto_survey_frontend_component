@@ -60,27 +60,27 @@ Chart.register(
   styleUrls: ['./graph.component.css']
 })
 
-//Graph component to draw the graphs
+// Graph component to draw the graphs
 
 export class GraphComponent implements OnInit {
 
   public loading = true;
-  public errorMsg: String;
-  public infoMsg: String;
+  public errorMsg: string;
+  public infoMsg: string;
   public surveys: Survey[];
   carmodelForms: any;
 
   canvas: any;
   ctx: any;
-  graphData: String[][];
+  graphData: string[][];
   carChart: any;
 
   constructor(private surveyService: SurveyserviceService) {
-    this.errorMsg = "";
+    this.errorMsg = '';
     this.infoMsg = '';
     this.surveys = [];
     this.graphData = [];
-    this.carmodelForms = ['BMW', "MERCEDEZ", 'HYUNDAI', 'AUDI', 'SAAB'];
+    this.carmodelForms = ['BMW', 'MERCEDEZ', 'HYUNDAI', 'AUDI', 'SAAB'];
   }
 
   ngOnInit(): void {
@@ -93,7 +93,7 @@ export class GraphComponent implements OnInit {
         this.loading = false;
       });
 
-    this.surveyService.getSurveyCategory().subscribe((mData: String[][]) => {
+    this.surveyService.getSurveyCategory().subscribe((mData: string[][]) => {
 
       this.graphData = mData;
       this.loading = false;
@@ -104,9 +104,9 @@ export class GraphComponent implements OnInit {
         this.loading = false;
       });
 
-    this.surveyService.getSurveyAverageCar().subscribe((mData: String) => {
+    this.surveyService.getSurveyAverageCar().subscribe((mData: string) => {
 
-      this.infoMsg = "Average Car (per person): " + mData;
+      this.infoMsg = 'Average Car (per person): ' + mData;
       this.loading = false;
     },
       (error: ErrorEvent) => {
@@ -114,7 +114,7 @@ export class GraphComponent implements OnInit {
         this.loading = false;
       });
 
-    this.surveyService.getSurveyTargetableclients().subscribe((mData: String[][]) => {
+    this.surveyService.getSurveyTargetableclients().subscribe((mData: string[][]) => {
 
       this.graphData = mData;
       this.targetSummaryGraph();
@@ -125,7 +125,7 @@ export class GraphComponent implements OnInit {
         this.loading = false;
       });
 
-    this.surveyService.getSurveyCarmodel(this.carmodelForms[0]).subscribe((mData: String[][]) => {
+    this.surveyService.getSurveyCarmodel(this.carmodelForms[0]).subscribe((mData: string[][]) => {
       this.carModelGraph(mData[0], mData[1]);
       this.loading = false;
     },
@@ -134,7 +134,7 @@ export class GraphComponent implements OnInit {
         this.loading = false;
       });
 
-    this.surveyService.getSurveyCarmake().subscribe((mData: String[][]) => {
+    this.surveyService.getSurveyCarmake().subscribe((mData: string[][]) => {
       this.carMakeDistributionGraph(mData[0], mData[1]);
       this.loading = false;
     },
@@ -147,7 +147,7 @@ export class GraphComponent implements OnInit {
   categorySurveyGraph(): void {
     this.canvas = document.getElementById('chart_category');
     this.ctx = this.canvas.getContext('2d');
-    let myChart = new Chart(this.ctx, {
+    const myChart = new Chart(this.ctx, {
       type: 'doughnut',
       data: {
         labels: this.graphData[0],
@@ -198,7 +198,7 @@ export class GraphComponent implements OnInit {
   targetSummaryGraph(): void {
     this.canvas = document.getElementById('chart_target');
     this.ctx = this.canvas.getContext('2d');
-    let myChart = new Chart(this.ctx, {
+    const myChart = new Chart(this.ctx, {
       type: 'pie',
       data: {
         labels: this.graphData[0],
@@ -245,10 +245,10 @@ export class GraphComponent implements OnInit {
     });
   }
 
-  carMakeDistributionGraph(plabel: String[], pdata: String[]): void {
+  carMakeDistributionGraph(plabel: string[], pdata: string[]): void {
     this.canvas = document.getElementById('chart_carmake');
     this.ctx = this.canvas.getContext('2d');
-    let myChart = new Chart(this.ctx, {
+    const myChart = new Chart(this.ctx, {
       type: 'pie',
       data: {
         labels: plabel,
@@ -297,10 +297,10 @@ export class GraphComponent implements OnInit {
     });
   }
 
-  carModelGraph(plabel: String[], pdata: String[]): void {
+  carModelGraph(plabel: string[], pdata: string[]): void {
     this.canvas = document.getElementById('chart_car');
     this.ctx = this.canvas.getContext('2d');
-    if (typeof this.carChart != 'undefined') {
+    if (typeof this.carChart !== 'undefined') {
       this.carChart.destroy();
     }
 
@@ -310,7 +310,7 @@ export class GraphComponent implements OnInit {
       data: {
         labels: plabel,
         datasets: [{
-          label: "Car Model ",
+          label: 'Car Model ',
           data: pdata,
           backgroundColor: [
             'rgb(0,63,92)',
@@ -355,7 +355,7 @@ export class GraphComponent implements OnInit {
 
 
   updateCarChart(filterVal: any): void {
-    this.surveyService.getSurveyCarmodel(filterVal.target.value).subscribe((mData: String[][]) => {
+    this.surveyService.getSurveyCarmodel(filterVal.target.value).subscribe((mData: string[][]) => {
       this.loading = false;
       this.carModelGraph(mData[0], mData[1]);
     },

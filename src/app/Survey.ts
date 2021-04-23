@@ -1,4 +1,4 @@
-import { CarInfo } from "./CarInfo";
+import { CarInfo } from './CarInfo';
 
 export class Survey {
     constructor(
