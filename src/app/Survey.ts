@@ -1,13 +1,16 @@
-export interface Survey {
-    _id: string;
-    age: number;
-    gender: string;
-    license: string;
-    firstcar: string;
-    drivetrain: string;
-    fuel: string;
-    carscount: number;
-    carmake: string;
-    carmodel: string;   
-  }
-  
+import { CarInfo } from "./CarInfo";
+
+export class Survey {
+    constructor(
+        public age: number,
+        public gender: string,
+        public license: string,
+        public firstcar: string,
+        public drivetrain: string,
+        public fuel: string,
+        public carscount: number,
+        public carmake: string,
+        public carmodel: string,
+        public cars: CarInfo[]
+    ) { }
+}

@@ -8,9 +8,9 @@ describe('SurveyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SurveyComponent ]
+      declarations: [SurveyComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

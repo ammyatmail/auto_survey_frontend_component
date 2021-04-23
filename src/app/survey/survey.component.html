@@ -2,113 +2,136 @@
 <mat-toolbar *ngIf="infoMsg" color="accent">{{ infoMsg }}</mat-toolbar>
 
 <div class="container-fluid">
-  <form #surveyForm="ngForm"  *ngIf="!submitted" (ngSubmit)="onSubmit(surveyForm.value)" novalidate>
-
+  <form #surveyForm="ngForm" *ngIf="!submitted" (ngSubmit)="onSubmit(surveyForm.value)" novalidate>
     <div class="form-group">
       <label>*Enter your age</label>
-      <input type ="number" required class="form-control" pattern="\d+" step="1" min="1" #age="ngModel" [class.is-invalid]="age.invalid && age.touched" name ="age" [(ngModel)]="userModel.age">
-      <small class="text-danger" [class.d-none] = "age.valid || age.untouched">Please enter proper value</small>
+      <input type="number" required class="form-control" pattern="\d+" step="1" min="1" #age="ngModel"
+        [class.is-invalid]="age.invalid && age.touched" name="age" [(ngModel)]="userModel.age">
+      <small class="text-danger" [class.d-none]="age.valid || age.untouched">Please enter proper value</small>
     </div>
 
     <div class="form-group">
       <label>*Please select your gender</label>
-      <select class="custom-select" required name ="gender" [(ngModel)]="userModel.gender" #gender="ngModel" required [class.is-invalid]="gender.invalid && gender.touched">
+      <select class="custom-select" required name="gender" [(ngModel)]="userModel.gender" #gender="ngModel" required
+        [class.is-invalid]="gender.invalid && gender.touched">
         <Option value=""> Gender </Option>
         <option *ngFor="let genderForm of genderForms"> {{genderForm}}</option>
       </select>
-      <small class="text-danger" [class.d-none] = "gender.valid || gender.untouched">Please choose an option</small>
+      <small class="text-danger" [class.d-none]="gender.valid || gender.untouched">Please choose an option</small>
 
     </div>
 
-  <div *ngIf="userModel.age>17">
-    <div class="mb-3">
-      <label>*Do you own a driving license?</label>
-<div class="form-check">
-  <input class="form-check-input" [(ngModel)]="userModel.license" type="radio" name="license" value="yes" #license="ngModel" required [class.is-invalid]="license.invalid && license.touched">
-  <label class="form-check-label">Yes</label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" [(ngModel)]="userModel.license" type="radio" name="license" value="no" #license="ngModel" required [class.is-invalid]="license.invalid && license.touched">
-  <label class="form-check-label">No, I prefer using other transport</label>
-</div>
-    </div>
-</div>
-
-
-      <div *ngIf="userModel.age>17 && userModel.age<26 && userModel.license=='yes'">
-
-    <div class="mb-3">
-      <label>*Is this your first car?</label>
-<div class="form-check">
-  <input class="form-check-input" [(ngModel)]="userModel.firstcar" type="radio" name="firstcar" value="yes" #firstcar="ngModel" required [class.is-invalid]="firstcar.invalid && firstcar.touched">
-  <label class="form-check-label">Yes</label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" [(ngModel)]="userModel.firstcar" type="radio" name="firstcar" value="no" #firstcar="ngModel" required [class.is-invalid]="firstcar.invalid && firstcar.touched">
-  <label class="form-check-label">No</label>
-</div>
-    </div>
-  </div>
-
-  <div *ngIf="(userModel.age>17 && userModel.age<26 && userModel.license=='yes'&& userModel.firstcar=='no') || (userModel.age>25 && userModel.license=='yes')">
-    <div class="mb-3">
-      <label>*Which DriveTrain you prefer?</label>
-<div class="form-check">
-  <input class="form-check-input" [(ngModel)]="userModel.drivetrain" type="radio" name="drivetrain" value="fwd" #drivetrain="ngModel" required [class.is-invalid]="drivetrain.invalid && drivetrain.touched">
-  <label class="form-check-label">FWD</label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" [(ngModel)]="userModel.drivetrain" type="radio" name="drivetrain" value="rwd" #drivetrain="ngModel" required [class.is-invalid]="drivetrain.invalid && drivetrain.touched">
-  <label class="form-check-label">RWD</label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" [(ngModel)]="userModel.drivetrain" type="radio" name="drivetrain" value="idontknow" #drivetrain="ngModel" required [class.is-invalid]="drivetrain.invalid && drivetrain.touched">
-  <label class="form-check-label">I don't know</label>
-</div>
-    </div>
-
-    <div class="mb-3">
-      <label>*Are you worried about fuel emission?</label>
-<div class="form-check">
-  <input class="form-check-input" [(ngModel)]="userModel.fuel" type="radio" name="fuel" value="yes" #fuel="ngModel" required [class.is-invalid]="fuel.invalid && fuel.touched">
-  <label class="form-check-label">Yes</label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" [(ngModel)]="userModel.fuel" type="radio" name="fuel" value="no" #fuel="ngModel" required [class.is-invalid]="fuel.invalid && fuel.touched">
-  <label class="form-check-label">No</label>
-</div>
-    </div> 
-
-
-    <div class="form-group">
-      <label>*How many car do you have in your family?</label>
-      <input type ="number" class="form-control" pattern="\d+" step="1"  name ="carscount" [(ngModel)]="userModel.carscount" #carscount="ngModel" required [class.is-invalid]="carscount.invalid && carscount.touched">
-      <small class="text-danger" [class.d-none] = "carscount.valid || carscount.untouched">Please enter proper value</small>
-
-    </div>
-
-
-    <div class="form-group">
-      <label>*Which car you drive?</label>
-
-      <select class="custom-select" name ="carmake" [(ngModel)]="userModel.carmake" #carmake="ngModel" required [class.is-invalid]="carmake.invalid && carmake.touched">
-        <Option value="">Car Make</Option>
-        <option *ngFor="let carmodelForm of carmodelForms"> {{carmodelForm}}</option>
-      </select>
-      <small class="text-danger" [class.d-none] = "carmake.valid || carmake.untouched">Please choose an option</small>
-    </div>
-
-    <div class="form-group">
-      <label>*Car Model</label>
-      <input type ="text" class="form-control" required name ="carmodel" #carmodel="ngModel" [class.is-invalid]="carmodel.invalid && carmodel.touched && !isValidBMWModel()" [(ngModel)]="userModel.carmodel">
-      <div *ngIf="carmodel.errors || !isValidBMWModel()">
-      <small class="text-danger" *ngIf="!isValidBMWModel()">Please enter proper model value for Car Model - BMW. (e.g. X1, M300i etc.), </small>
-      <small class="text-danger" *ngIf="carmodel.errors?.required && carmodel.touched">Required field.</small>
+    <div *ngIf="userModel.age>17">
+      <div class="mb-3">
+        <label>*Do you own a driving license?</label>
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="userModel.license" type="radio" name="license" value="yes"
+            #license="ngModel" required [class.is-invalid]="license.invalid && license.touched">
+          <label class="form-check-label">Yes</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="userModel.license" type="radio" name="license" value="no"
+            #license="ngModel" required [class.is-invalid]="license.invalid && license.touched">
+          <label class="form-check-label">No, I prefer using other transport</label>
+        </div>
       </div>
     </div>
 
-</div>
-    <button [disabled] = "surveyForm.form.invalid || !isValidBMWModel()" class="btn btn-primary" type="submit">Submit Survey</button>
+
+    <div *ngIf="userModel.age>17 && userModel.age<26 && userModel.license=='yes'">
+
+      <div class="mb-3">
+        <label>*Is this your first car?</label>
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="userModel.firstcar" type="radio" name="firstcar" value="yes"
+            #firstcar="ngModel" required [class.is-invalid]="firstcar.invalid && firstcar.touched">
+          <label class="form-check-label">Yes</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="userModel.firstcar" type="radio" name="firstcar" value="no"
+            #firstcar="ngModel" required [class.is-invalid]="firstcar.invalid && firstcar.touched">
+          <label class="form-check-label">No</label>
+        </div>
+      </div>
+    </div>
+
+    <div
+      *ngIf="(userModel.age>17 && userModel.age<26 && userModel.license=='yes'&& userModel.firstcar=='no') || (userModel.age>25 && userModel.license=='yes')">
+      <div class="mb-3">
+        <label>*Which DriveTrain you prefer?</label>
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="userModel.drivetrain" type="radio" name="drivetrain" value="fwd"
+            #drivetrain="ngModel" required [class.is-invalid]="drivetrain.invalid && drivetrain.touched">
+          <label class="form-check-label">FWD</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="userModel.drivetrain" type="radio" name="drivetrain" value="rwd"
+            #drivetrain="ngModel" required [class.is-invalid]="drivetrain.invalid && drivetrain.touched">
+          <label class="form-check-label">RWD</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="userModel.drivetrain" type="radio" name="drivetrain"
+            value="idontknow" #drivetrain="ngModel" required
+            [class.is-invalid]="drivetrain.invalid && drivetrain.touched">
+          <label class="form-check-label">I don't know</label>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label>*Are you worried about fuel emission?</label>
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="userModel.fuel" type="radio" name="fuel" value="yes"
+            #fuel="ngModel" required [class.is-invalid]="fuel.invalid && fuel.touched">
+          <label class="form-check-label">Yes</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="userModel.fuel" type="radio" name="fuel" value="no"
+            #fuel="ngModel" required [class.is-invalid]="fuel.invalid && fuel.touched">
+          <label class="form-check-label">No</label>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label>*How many car do you have in your family?</label>
+        <input type="number" (change)="setCarsCount()" class="form-control" pattern="\d+" step="1" name="carscount"
+          [(ngModel)]="userModel.carscount" #carscount="ngModel" required
+          [class.is-invalid]="(carscount.invalid && carscount.touched) ||(carscount.touched && userModel.carscount==0)">
+        <small class="text-danger" [class.d-none]="carscount.valid || carscount.untouched">Please enter proper
+          value</small>
+
+      </div>
+
+      <div ngModelGroup="cars">
+        <div *ngFor="let car of userModel.cars; let in=index" class="form-inline" id="carInfoDiv">
+          <div class="form-group">
+            <select class="custom-select" (change)="isValidBMWModel(in)" name="carMake{{in}}"
+              [(ngModel)]="car.carMakeInfo" #cma="ngModel" required [class.is-invalid]="cma.invalid && cma.touched">
+              <Option value="">Car Make</Option>
+              <option *ngFor="let carmodelForm of carmodelForms"> {{carmodelForm}}</option>
+            </select>
+            <small class="text-danger" [class.d-none]="cma.valid || cma.untouched ">Please choose an option</small>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" required name="carModel{{in}}" #cmo="ngModel"
+              [class.is-invalid]="(cmo.invalid && cmo.touched) || !isValidBMWModel(in)" placeholder="Car Model"
+              [(ngModel)]="car.carModelInfo">
+            <div *ngIf="cmo.errors || !isValidBMWModel(in)">
+              <small class="text-danger" *ngIf="!isValidBMWModel(in)">Please enter proper model value for Car Model -
+                BMW.
+                (e.g. X1, M300i etc.), </small>
+              <small class="text-danger" *ngIf="cmo.errors?.required && cmo.touched">Required field.</small>
+            </div>
+          </div>
+        </div>
+        <br />
+      </div>
+
+
+    </div>
+    <br />
+    <button [disabled]="surveyForm.form.invalid || surveyForm.value.carscount==0" class="btn btn-primary"
+      type="submit">Submit
+      Survey</button>
   </form>
-  </div>
-  
+</div>
