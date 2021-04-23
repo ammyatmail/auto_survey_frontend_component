@@ -20,7 +20,7 @@ export class SurveyComponent implements OnInit {
   carmodelForms: any;
   submitted = false;
 
-  public userModel = new Survey(0, "", "", "", "", "", 0, "", "", []);
+  public surveyModel = new Survey(0, "", "", "", "", "", 0, "", "", []);
 
   constructor(private surveyService: SurveyserviceService, private formBuilder: FormBuilder) {
 
@@ -43,14 +43,10 @@ export class SurveyComponent implements OnInit {
     }
 
     this.submitted = true;
-    tempForm.cars = this.userModel.cars;
-    this.userModel = tempForm;
+    tempForm.cars = this.surveyModel.cars;
+    this.surveyModel = tempForm;
 
-    //for temporary check
-    //console.log("tempForm: "+tempForm);
-    // console.log("userModel: "+this.userModel);
-
-    this.surveyService.createSurvey(this.userModel)
+    this.surveyService.createSurvey(this.surveyModel)
       .subscribe((createdSurvey: Survey) => {
         if (createdSurvey.age < 18) {
           this.infoMsg = 'Survey submitted Successfully. Thanks for filling out our form!';
@@ -69,26 +65,26 @@ export class SurveyComponent implements OnInit {
   }
 
   isValidBMWModel(index: number): boolean {
-    if (this.userModel.cars[index].carMakeInfo != "BMW") {
+    if (this.surveyModel.cars[index].carMakeInfo != "BMW") {
       return true;
     }
 
     let regexp1 = new RegExp('^[xXzZ][0-9]{1}$');
     let regexp2 = new RegExp('^[mM]{0,1}[0-9]{3}[diDI]{0,1}$');
-    let firstReg: boolean = regexp1.test(this.userModel.cars[index].carModelInfo);
-    let secondReg: boolean = regexp2.test(this.userModel.cars[index].carModelInfo);
+    let firstReg: boolean = regexp1.test(this.surveyModel.cars[index].carModelInfo);
+    let secondReg: boolean = regexp2.test(this.surveyModel.cars[index].carModelInfo);
     return (firstReg || secondReg);
   }
 
   setCarsCount() {
-    this.userModel.cars = [];
-    for (let itr = 0; itr < this.userModel.carscount; itr++) {
-      this.userModel.cars.push(new CarInfo("", ""));
+    this.surveyModel.cars = [];
+    for (let itr = 0; itr < this.surveyModel.carscount; itr++) {
+      this.surveyModel.cars.push(new CarInfo("", ""));
     }
   }
 
   validateCars(): string {
-    for (let i = 0; i < this.userModel.cars.length; i++) {
+    for (let i = 0; i < this.surveyModel.cars.length; i++) {
       if (!this.isValidBMWModel(i)) {
         return "Mentioned Car Model information is wrong for BMW car";
       }
