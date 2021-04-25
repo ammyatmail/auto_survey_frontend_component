@@ -55,7 +55,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Screenshots
 
-![form](https://user-images.githubusercontent.com/45271979/115144214-176d9580-a069-11eb-9546-f7f741d31989.JPG)
+![Form1](https://user-images.githubusercontent.com/45271979/115991920-8195b580-a5e8-11eb-8151-2379d3b66d3a.JPG)
 
 
 ![graph](https://user-images.githubusercontent.com/45271979/115145793-0163d300-a071-11eb-8245-24688f7eb0ee.JPG)
